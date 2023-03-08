@@ -22,20 +22,25 @@ int main()
 {
 
 
-   long i, j;
+   int a, b;
 
-   while (scanf("%ld %ld", &i, &j) == 2)
+   while (scanf("%d %d", &a, &b) == 2)
    {
       int max = 0;
-      long k;
-      long l = i;
-      long r = j;
-      if (i > j)
+      int k;
+
+      /* We need the extra variables, i, j*/
+      /* The original value of input integers should be
+       * kept for the last printf() statement */
+      int i = a;
+      int j = b;
+      if (i > j)     /* Swap i, j*/
       {
-         l = j;
-         r = i;
+         i = i - j;
+         j = i + j;
+         i = j - i;
       }
-      for (k = l; k <= r; k++)
+      for (k = i; k <= j; k++)
       {
          int len = cycle_length(k);
          if (len > max)
@@ -43,7 +48,7 @@ int main()
             max = len;
          }
       }
-      printf("%ld %ld %d\n", i, j, max);
+      printf("%d %d %d\n", a, b, max);
    }
    return 0;
 }
